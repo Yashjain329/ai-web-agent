@@ -85,40 +85,17 @@ This project demonstrates a path towards **self-reliant AI agents** that can aut
 
 ## 📊 System Architecture Diagram
 
-```mermaid
-graph TD
-  User[User Input (Text/Voice)] -->|Instruction| Frontend[Web UI]
-  Frontend -->|REST API| FastAPI[FastAPI Server]
-  FastAPI --> Agent[EnhancedWebAgent]
-  Agent --> Playwright[Playwright Browser]
-  Agent --> LLM[Local Mistral LLM (llama-cpp)]
-  Playwright -->|Web Automation| Websites[Target Websites]
-  LLM --> Agent
-  Agent --> DB[(SQLite Memory)]
-  Agent --> FastAPI
-  FastAPI --> Frontend
-  Frontend --> User
-```
+![System Architecture](./docs/system-architecture.png)
+
+*(Diagram shows: User → Frontend UI → FastAPI Server → Enhanced Web Agent → Playwright + Local LLM → Websites + SQLite Memory → Back to User)*
 
 ---
 
 ## 🔄 Workflow Example
 
-```mermaid
-sequenceDiagram
-  participant U as User
-  participant F as Frontend (UI)
-  participant A as Agent (LLM + Playwright)
-  participant W as Website
+![Workflow Example](./docs/workflow-sequence.png)
 
-  U->>F: "Search for laptops under 50k"
-  F->>A: Send instruction via FastAPI
-  A->>LLM: Parse instruction into steps
-  A->>W: Launch Playwright, search Amazon
-  W-->>A: Returns product list
-  A->>F: Sends structured results
-  F-->>U: Displays clickable list + JSON/CSV
-```
+*(Diagram shows: User gives instruction → Frontend sends to FastAPI → LLM parses → Playwright executes → Results returned → Displayed in UI)*
 
 ---
 
