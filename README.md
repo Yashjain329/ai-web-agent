@@ -1,5 +1,3 @@
-# 🤖 AI Web Agent — Hackathon Submission
-
 ## 📌 Project Title
 
 AI Web Agent — Autonomous Browsing with Local LLM (Mistral 7B GGUF)
@@ -85,17 +83,44 @@ This project demonstrates a path towards **self-reliant AI agents** that can aut
 
 ## 📊 System Architecture Diagram
 
-![System Architecture](./docs/system-architecture.png)
+```mermaid
+flowchart TD
+  User["User Input (Text/Voice)"]
+  Frontend["Frontend UI (HTML/JS)"]
+  FastAPI["FastAPI Server (Python)"]
+  Agent["Enhanced Web Agent"]
+  Playwright["Playwright Browser"]
+  LLM["Local Mistral LLM (llama-cpp)"]
+  DB[("SQLite Memory")]
+  Websites["Target Websites"]
 
-*(Diagram shows: User → Frontend UI → FastAPI Server → Enhanced Web Agent → Playwright + Local LLM → Websites + SQLite Memory → Back to User)*
+  User --> Frontend --> FastAPI --> Agent
+  Agent --> Playwright --> Websites
+  Agent --> LLM
+  LLM --> Agent
+  Agent --> DB
+  Agent --> FastAPI --> Frontend --> User
+```
 
 ---
 
 ## 🔄 Workflow Example
 
-![Workflow Example](./docs/workflow-sequence.png)
+```mermaid
+sequenceDiagram
+  participant U as User
+  participant F as Frontend (UI)
+  participant A as Agent (LLM + Playwright)
+  participant W as Website
 
-*(Diagram shows: User gives instruction → Frontend sends to FastAPI → LLM parses → Playwright executes → Results returned → Displayed in UI)*
+  U->>F: "Search for laptops under 50k"
+  F->>A: Sends instruction via FastAPI
+  A->>LLM: Parses into structured steps
+  A->>W: Automates browsing with Playwright
+  W-->>A: Returns product data
+  A->>F: Sends structured results
+  F-->>U: Displays clickable list + JSON/CSV
+```
 
 ---
 
@@ -129,4 +154,4 @@ This project demonstrates a path towards **self-reliant AI agents** that can aut
 
 ## 📧 Support
 
-Conatact : Yashjain9350@gmail.com 
+Contact: [yashjain9350@gmail.com](mailto:yashjain9350@gmail.com)
